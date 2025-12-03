@@ -13,6 +13,9 @@ class Notification
     private string $id;
     private \DateTimeImmutable $sentAt;
 
+    /**
+     * @param array<string, mixed> $metadata
+     */
     public function __construct(
         private User $user,
         private NotificationChannel $channel,
