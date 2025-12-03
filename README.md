@@ -1,4 +1,4 @@
-# 🎯 [Nom du Pattern] - [Nom du Use Case]
+# 🎯 Factory Pattern - Notifications
 
 [![PHP Version](https://img.shields.io/badge/php-%5E8.2-blue)](https://www.php.net/)
 [![Symfony Version](https://img.shields.io/badge/symfony-7.3-black)](https://symfony.com/)
