@@ -45,6 +45,9 @@ services:
     App\Infrastructure\Sms\SmsProviderInterface:
         class: App\Infrastructure\Sms\FakeSmsProvider
 
-    # Repository interfaces (à compléter plus tard)
-    # App\Domain\Repository\UserRepositoryInterface: ...
-    # App\Domain\Repository\NotificationRepositoryInterface: ...
+    # Repository interfaces
+    App\Domain\Repository\UserRepositoryInterface:
+        class: App\Infrastructure\Doctrine\Repository\UserRepository
+
+    App\Domain\Repository\NotificationRepositoryInterface:
+        class: App\Infrastructure\Doctrine\Repository\NotificationRepository

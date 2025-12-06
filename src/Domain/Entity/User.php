@@ -5,22 +5,51 @@ declare(strict_types=1);
 namespace App\Domain\Entity;
 
 use App\Domain\ValueObject\NotificationChannel;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;
 
+#[ORM\Entity]
+#[ORM\Table(name: 'users')]
 class User
 {
+    #[ORM\Id]
+    #[ORM\Column(type: 'string', length: 36)]
     private string $id;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private string $email;
+
+    #[ORM\Column(type: 'boolean')]
+    private bool $emailVerified;
+
+    #[ORM\Column(type: 'string', length: 20, nullable: true)]
+    private ?string $phone;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $pushToken;
+
+    #[ORM\Column(type: 'string', length: 100, nullable: true)]
+    private ?string $slackUserId;
+
+    #[ORM\Column(type: 'string', enumType: NotificationChannel::class)]
+    private NotificationChannel $preferredChannel;
+
     public function __construct(
-        private string $email,
-        private bool $emailVerified,
-        private ?string $phone,
-        private ?string $pushToken,
-        private ?string $slackUserId,
-        private NotificationChannel $preferredChannel,
+        string $email,
+        bool $emailVerified,
+        ?string $phone,
+        ?string $pushToken,
+        ?string $slackUserId,
+        NotificationChannel $preferredChannel,
         ?string $id = null,
     ) {
         $this->id = $id ?? Uuid::v4()->toRfc4122();
+        $this->email = $email;
+        $this->emailVerified = $emailVerified;
+        $this->phone = $phone;
+        $this->pushToken = $pushToken;
+        $this->slackUserId = $slackUserId;
+        $this->preferredChannel = $preferredChannel;
     }
 
     public function getId(): string

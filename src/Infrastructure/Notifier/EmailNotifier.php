@@ -6,7 +6,6 @@ namespace App\Infrastructure\Notifier;
 
 use App\Domain\Notifier\NotifierInterface;
 use App\Domain\ValueObject\NotificationChannel;
-use PharIo\Manifest\Email;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
