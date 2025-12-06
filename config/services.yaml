@@ -18,3 +18,33 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    # Tag all factories
+    App\Infrastructure\Factory\EmailNotifierFactory:
+        arguments:
+            $fromEmail: '%env(MAIL_FROM)%'
+        tags: ['app.notifier_factory']
+
+    App\Infrastructure\Factory\SmsNotifierFactory:
+        arguments:
+            $smsApiKey: '%env(SMS_API_KEY)%'
+        tags: ['app.notifier_factory']
+
+    App\Infrastructure\Factory\PushNotifierFactory:
+        tags: ['app.notifier_factory']
+
+    App\Infrastructure\Factory\SlackNotifierFactory:
+        tags: ['app.notifier_factory']
+
+    # Registry receives all tagged factories
+    App\Infrastructure\Factory\NotifierFactoryRegistry:
+        arguments:
+            $factories: !tagged_iterator app.notifier_factory
+
+    # SMS Provider
+    App\Infrastructure\Sms\SmsProviderInterface:
+        class: App\Infrastructure\Sms\FakeSmsProvider
+
+    # Repository interfaces (à compléter plus tard)
+    # App\Domain\Repository\UserRepositoryInterface: ...
+    # App\Domain\Repository\NotificationRepositoryInterface: ...

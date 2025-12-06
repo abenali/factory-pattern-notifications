@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\Sms;
 
 use Psr\Log\LoggerInterface;
+use Random\RandomException;
 
 /**
  * Fake SMS provider for development/testing.
@@ -17,6 +18,9 @@ final class FakeSmsProvider implements SmsProviderInterface
     ) {
     }
 
+    /**
+     * @throws RandomException
+     */
     public function sendSms(string $phoneNumber, string $message, string $apiKey): void
     {
         // Simulate API call delay
