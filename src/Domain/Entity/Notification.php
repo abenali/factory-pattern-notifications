@@ -27,6 +27,9 @@ class Notification
     #[ORM\Column(type: 'text')]
     private string $message;
 
+    /**
+     * @var array<string, mixed>
+     */
     #[ORM\Column(type: 'json')]
     private array $metadata;
 
@@ -36,6 +39,9 @@ class Notification
     #[ORM\Column(type: 'datetime_immutable')]
     private \DateTimeImmutable $sentAt;
 
+    /**
+     * @param array<string, mixed> $metadata
+     */
     public function __construct(
         User $user,
         NotificationChannel $channel,
